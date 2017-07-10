@@ -19,6 +19,7 @@ namespace DashboardApp.Controllers
 
       ViewBag.Title = "Home";
       return View(dashboardReport);
+            //new comment is added
     }
   }
 }
