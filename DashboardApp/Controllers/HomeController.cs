@@ -8,16 +8,22 @@ namespace DashboardApp.Controllers
   {
     public ActionResult Index()
     {
-      var db = new DashboardAppEntities();
+     // var db = new DashboardAppEntities();
       var dashboardReport = new DashboardReport
       {
-        NewComments = db.Comments.Count(),
-        NewTasks = db.Tasks.Count(),
-        NewOrders = db.Orders.Count(),
-        SupportTickets = db.SupportTickets.Count()
+          NewComments = 10,
+          NewTasks = 20,
+          NewOrders = 30,
+          SupportTickets = 40
       };
+            //{
+            //  NewComments = db.Comments.Count(),
+            //  NewTasks = db.Tasks.Count(),
+            //  NewOrders = db.Orders.Count(),
+            //  SupportTickets = db.SupportTickets.Count()
+            //};
 
-      ViewBag.Title = "Home";
+            ViewBag.Title = "Home";
       return View(dashboardReport);
             //new comment is added
     }
