@@ -1,7 +1,9 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
 using DashboardApp.Models;
-
+using System.Diagnostics.Tracing;
+using System.Diagnostics;
+using System;
 
 namespace DashboardApp.Controllers
 {
@@ -9,28 +11,35 @@ namespace DashboardApp.Controllers
   {
     public ActionResult Index()
     {
-            
-            var db = new DashboardAppEntities();
-            var dashboardReport = new DashboardReport
+            try
             {
-                //NewComments = 10,
-                //NewTasks = 20,
-                //NewOrders = 30,
-                //SupportTickets = 40
-                NewComments = db.Comments.Count(),
-                NewTasks = db.Tasks.Count(),
-                NewOrders = db.Orders.Count(),
-                SupportTickets = db.SupportTickets.Count()
-            };
-            //{
-            //  NewComments = db.Comments.Count(),
-            //  NewTasks = db.Tasks.Count(),
-            //  NewOrders = db.Orders.Count(),
-            //  SupportTickets = db.SupportTickets.Count()
-            //};
+                var db = new DashboardAppEntities();
+                var dashboardReport = new DashboardReport
+                {
+                    //NewComments = 10,
+                    //NewTasks = 20,
+                    //NewOrders = 30,
+                    //SupportTickets = 40
+                    NewComments = db.Comments.Count(),
+                    NewTasks = db.Tasks.Count(),
+                    NewOrders = db.Orders.Count(),
+                    SupportTickets = db.SupportTickets.Count()
+                };
+                //{
+                //  NewComments = db.Comments.Count(),
+                //  NewTasks = db.Tasks.Count(),
+                //  NewOrders = db.Orders.Count(),
+                //  SupportTickets = db.SupportTickets.Count()
+                //};
 
-            ViewBag.Title = "Home from db";
-      return View(dashboardReport);
+                ViewBag.Title = "Home from db";
+                return View(dashboardReport);
+            }catch(Exception ex)
+            {
+                Trace.TraceError(ex.Message);
+                throw ex;
+                    
+            }
             //new comment is added
     }
   }
